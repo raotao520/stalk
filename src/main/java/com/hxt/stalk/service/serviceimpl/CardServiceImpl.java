@@ -9,15 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 
-/**
- * <Description> <br>
- *
- * @author RRR
- * @version 1.0
- * @taskId:
- * @createDate 2019/07/16 12:43
- * @see com.hxt.stalk.service.serviceimpl
- */
+
 @Service
 public class CardServiceImpl implements CardService {
 

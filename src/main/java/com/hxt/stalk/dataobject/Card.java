@@ -8,15 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.util.Date;
 
-/**
- * <Description>
- *
- * @author RRR
- * @version 1.0
- * @taskId:
- * @createDate 2019/07/16 12:16
- * @see com.hxt.stalk.dataobject
- */
 
 @Data
 @Entity
