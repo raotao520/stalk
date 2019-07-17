@@ -1,0 +1,11 @@
+
+
+CREATE TABLE `card` (
+  `id` int(128) NOT NULL AUTO_INCREMENT COMMENT '车牌ID',
+  `number` varchar(128) CHARACTER SET utf8mb4 NOT NULL COMMENT '车牌号',
+  `select` varchar(128) CHARACTER SET utf8mb4 NOT NULL COMMENT '窗口号',
+  `create_data` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `status` int(128) NOT NULL COMMENT '车牌状态',
+  `update_data` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8

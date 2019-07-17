@@ -5,15 +5,6 @@ import com.jacob.activeX.ActiveXComponent;
 import com.jacob.com.Dispatch;
 import com.jacob.com.Variant;
 
-/**
- * <Description> <br>
- *
- * @author RRR
- * @version 1.0
- * @taskId:
- * @createDate 2019/07/16 12:39
- * @see com.hxt.stalk.util
- */
 public class SoundSpeakerUtil {
 
     public void getSound(Card card) {
