@@ -9,7 +9,7 @@ public interface CardService {
 
     List<Card> findAll();
 
-    List<Card> findAllByStatus(Integer status);
+    List<Card> findByStatusIn(List<Integer> list);
 
     Card save(Card card);
 

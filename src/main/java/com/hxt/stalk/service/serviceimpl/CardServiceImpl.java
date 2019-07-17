@@ -22,8 +22,8 @@ public class CardServiceImpl implements CardService {
     }
 
     @Override
-    public List<Card> findAllByStatus(Integer status) {
-        return cardRepsitory.findAllByStatus(status);
+    public List<Card> findByStatusIn(List<Integer> list) {
+        return cardRepsitory.findByStatusIn(list);
     }
 
     @Override

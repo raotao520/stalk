@@ -43,7 +43,23 @@ public class Card {
 
     /**
      * 车辆状态
+     *
+     * status = 0 等待打证
+     * status = 1 不合格
+     * status = 2 等待领取合格证
+     * status = 3 办理完结
+     * status = 4 资料录入
      */
     private Integer status;
 
+    public Card() {
+    }
+
+    public Card(String number, String select, Date createData, Date updateData, Integer status) {
+        this.number = number;
+        this.select = select;
+        this.createData = createData;
+        this.updateData = updateData;
+        this.status = status;
+    }
 }

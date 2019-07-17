@@ -8,6 +8,7 @@ import java.util.List;
 public interface CardRepsitory extends JpaRepository<Card,Integer> {
 
     Card findCardsById(Integer id);
-    List<Card> findAllByStatus(Integer status);
+
+    List<Card> findByStatusIn(List<Integer> list);
 
 }
