@@ -30,4 +30,15 @@ public class CardServiceImpl implements CardService {
     public Card save(Card card) {
         return cardRepsitory.save(card);
     }
+
+    @Override
+    public Card updata(Integer id, String select, Integer status) {
+
+        Card card = cardRepsitory.findCardsById(id);
+        card.setSelect(select);
+        card.setStatus(status);
+        return cardRepsitory.save(card);
+    }
+
+
 }
