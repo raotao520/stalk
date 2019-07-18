@@ -15,6 +15,6 @@ public interface CardService {
 
     Card updata(Integer id ,String select, Integer status);
 
-    
+
 
 }
