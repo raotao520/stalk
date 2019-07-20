@@ -50,5 +50,10 @@ public class CardServiceImpl implements CardService {
         return cardRepsitory.findCardByNumber(number);
     }
 
+    @Override
+    public List<Card> findCardsByStatus(Integer status) {
+        return cardRepsitory.findCardsByStatus(status);
+    }
+
 
 }

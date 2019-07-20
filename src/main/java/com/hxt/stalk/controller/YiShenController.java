@@ -10,8 +10,9 @@ import java.util.Arrays;
 import java.util.List;
 
 @RestController
-@RequestMapping("/ziliao")
-public class ZiLiaoController {
+@RequestMapping("/yishen")
+public class YiShenController {
+
     @Autowired
     CardService cardService;
     SoundSpeakerUtil soundSpeakerUtil = new SoundSpeakerUtil();
@@ -19,30 +20,30 @@ public class ZiLiaoController {
     @GetMapping("/list")
     public List<Card> findStatusList(){
 
-        List<Integer> list = Arrays.asList(1,4);
+        List<Integer> list = Arrays.asList(0,1);
 
         return cardService.findByStatusIn(list);
     }
-    @PostMapping("/ziliaohujiao")
+    @PostMapping("/yishenhujiao")
     public void speakList(@RequestParam("id") Integer id){
         Card card = cardService.findCardsById(id);
 
-        if (card.getSelect() == "资料录入") {
+        if (card.getSelect() == "一审") {
             soundSpeakerUtil.getSound(card);
         }else {
-            card.setSelect("资料录入");
-            card.setStatus(4);
+            card.setSelect("一审");
+            card.setStatus(1);
             cardService.save(card);
             soundSpeakerUtil.getSound(card);
         }
     }
 
-    @PostMapping("/speak")
+    @PostMapping("/yishenspeak")
     public void speaker(@RequestParam("number") String number){
         Card card = new Card();
         card.setNumber(number);
-        card.setSelect("资料录入");
-        card.setStatus(4);
+        card.setSelect("一审");
+        card.setStatus(1);
         if (cardService.findCardByNumber(number) == null) {
             cardService.save(card);
             soundSpeakerUtil.getSound(card);
@@ -51,4 +52,11 @@ public class ZiLiaoController {
         }
     }
 
+    @PostMapping("/hege")
+    public void updateCard(@RequestParam("id") Integer id){
+        Card card = cardService.findCardsById(id);
+        card.setSelect("一审");
+        card.setStatus(0);
+        cardService.save(card);
+    }
 }
