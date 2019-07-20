@@ -40,5 +40,15 @@ public class CardServiceImpl implements CardService {
         return cardRepsitory.save(card);
     }
 
+    @Override
+    public Card findCardsById(Integer id) {
+        return cardRepsitory.findCardsById(id);
+    }
+
+    @Override
+    public Card findCardByNumber(String number) {
+        return cardRepsitory.findCardByNumber(number);
+    }
+
 
 }

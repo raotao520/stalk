@@ -11,4 +11,8 @@ public interface CardRepsitory extends JpaRepository<Card,Integer> {
 
     List<Card> findByStatusIn(List<Integer> list);
 
+    List<Card> findCardsByStatus(Integer integer);
+
+    Card findCardByNumber(String number);
+
 }
