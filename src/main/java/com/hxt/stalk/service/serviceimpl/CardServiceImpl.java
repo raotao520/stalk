@@ -34,15 +34,15 @@ public class CardServiceImpl implements CardService {
     @Override
     public Card updata(Integer id, String select, Integer status) {
 
-        Card card = cardRepsitory.findCardsById(id);
+        Card card = cardRepsitory.findCardById(id);
         card.setSelect(select);
         card.setStatus(status);
         return cardRepsitory.save(card);
     }
 
     @Override
-    public Card findCardsById(Integer id) {
-        return cardRepsitory.findCardsById(id);
+    public Card findCardById(Integer id) {
+        return cardRepsitory.findCardById(id);
     }
 
     @Override

@@ -35,7 +35,7 @@ public class DaZhengController {
 
     @PostMapping("/update")
     public void updateStatus(@RequestParam("id") Integer id){
-        Card card = cardService.findCardsById(id);
+        Card card = cardService.findCardById(id);
         card.setSelect("制证打证");
         card.setStatus(2);
         soundSpeakerUtil.getSound(card);
@@ -43,7 +43,7 @@ public class DaZhengController {
 
     @PostMapping("/last")
     public void updateStatuslast(@RequestParam("id") Integer id) {
-        Card card = cardService.findCardsById(id);
+        Card card = cardService.findCardById(id);
         card.setStatus(3);
     }
 }

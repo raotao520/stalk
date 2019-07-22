@@ -27,7 +27,7 @@ public class CardRepsitoryTest {
 
     @Test
     public void findOneTest(){
-        Card card = cardRepsitory.findCardsById(2);
+        Card card = cardRepsitory.findCardById(2);
         System.out.println(card.toString());
     }
 }

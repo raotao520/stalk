@@ -4,12 +4,14 @@ import com.hxt.stalk.dataobject.Card;
 import com.hxt.stalk.service.CardService;
 import com.hxt.stalk.util.SoundSpeakerUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/ziliao")
 public class ZiLiaoController {
     @Autowired
@@ -17,28 +19,31 @@ public class ZiLiaoController {
     SoundSpeakerUtil soundSpeakerUtil = new SoundSpeakerUtil();
 
     @GetMapping("/list")
-    public List<Card> findStatusList(){
+    public String findStatusList(Model model){
 
         List<Integer> list = Arrays.asList(1,4);
 
-        return cardService.findByStatusIn(list);
+        List cards = cardService.findByStatusIn(list);
+        model.addAttribute("cards",cards);
+        return "ziliao";
     }
-    @PostMapping("/ziliaohujiao")
-    public void speakList(@RequestParam("id") Integer id){
-        Card card = cardService.findCardsById(id);
+    @GetMapping("/ziliaohujiao")
+    @ResponseBody
+    public void speakList(Integer id){
 
-        if (card.getSelect() == "资料录入") {
+        Integer id1 = (Integer) id;
+        Integer status = new Integer(4);
+        Card card = cardService.findCardById(id1);
+        System.out.println(card);
+        String string = "资料录入";
+            /*card.setSelect(string);
+            cardService.save(card);*/
             soundSpeakerUtil.getSound(card);
-        }else {
-            card.setSelect("资料录入");
-            card.setStatus(4);
-            cardService.save(card);
-            soundSpeakerUtil.getSound(card);
-        }
+
     }
 
-    @PostMapping("/speak")
-    public void speaker(@RequestParam("number") String number){
+    @GetMapping("/speak/{number}")
+    public String  speaker(String number){
         Card card = new Card();
         card.setNumber(number);
         card.setSelect("资料录入");
@@ -46,8 +51,10 @@ public class ZiLiaoController {
         if (cardService.findCardByNumber(number) == null) {
             cardService.save(card);
             soundSpeakerUtil.getSound(card);
+            return "ziliao";
         }else {
             soundSpeakerUtil.getSound(card);
+            return "ziliao";
         }
     }
 

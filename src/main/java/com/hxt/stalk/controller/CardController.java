@@ -28,18 +28,6 @@ public class CardController {
     }
 
     /**
-     * 资料录入
-     * @return
-     */
-    @GetMapping("/ziliao")
-    public List<Card> findStatusList(){
-
-        List<Integer> list = Arrays.asList(1,4);
-
-        return cardService.findByStatusIn(list);
-    }
-
-    /**
      * 一审窗口列表显示
      * 传入状态，用于动态显示屏显示
      * @param
@@ -51,36 +39,6 @@ public class CardController {
         List<Integer> list = Arrays.asList(1,0);
 
         return cardService.findByStatusIn(list);
-    }
-
-    /**
-     * 打证
-     * @return
-     */
-    @GetMapping("/dazhjeng")
-    public List<Card> findDaZheng(){
-
-        List<Integer> list = Arrays.asList(0,2);
-
-        return cardService.findByStatusIn(list);
-    }
-
-
-    /**
-     * 保存和更新
-     * @param number
-     * @param select
-     * @param status
-     */
-    @PostMapping("/save")
-    public void saveCard(@RequestParam("number") String number,
-                         @RequestParam("select" ) String select,
-                         @RequestParam("status") Integer status){
-        Card card = new Card();
-        card.setNumber(number);
-        card.setSelect(select);
-        card.setStatus(status);
-        cardService.save(card);
     }
 
 }

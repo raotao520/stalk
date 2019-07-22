@@ -26,7 +26,7 @@ public class YiShenController {
     }
     @PostMapping("/yishenhujiao")
     public void speakList(@RequestParam("id") Integer id){
-        Card card = cardService.findCardsById(id);
+        Card card = cardService.findCardById(id);
 
         if (card.getSelect() == "一审") {
             soundSpeakerUtil.getSound(card);
@@ -54,7 +54,7 @@ public class YiShenController {
 
     @PostMapping("/hege")
     public void updateCard(@RequestParam("id") Integer id){
-        Card card = cardService.findCardsById(id);
+        Card card = cardService.findCardById(id);
         card.setSelect("一审");
         card.setStatus(0);
         cardService.save(card);

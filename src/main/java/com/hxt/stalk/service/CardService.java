@@ -15,7 +15,7 @@ public interface CardService {
 
     Card updata(Integer id ,String select, Integer status);
 
-    Card findCardsById(Integer id);
+    Card findCardById(Integer id);
 
     Card findCardByNumber(String number);
 
