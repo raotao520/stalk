@@ -5,6 +5,7 @@ import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.util.Date;
 
@@ -18,7 +19,7 @@ public class Card {
      * id
      */
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     /**
@@ -29,7 +30,7 @@ public class Card {
     /**
      * 窗口号
      */
-    private String select;
+    private String window;
 
     /**
      * 创建时间
@@ -55,9 +56,9 @@ public class Card {
     public Card() {
     }
 
-    public Card(String number, String select, Date createData, Date updateData, Integer status) {
+    public Card(String number, String window, Date createData, Date updateData, Integer status) {
         this.number = number;
-        this.select = select;
+        this.window = window;
         this.createData = createData;
         this.updateData = updateData;
         this.status = status;

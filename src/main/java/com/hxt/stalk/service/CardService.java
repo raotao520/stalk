@@ -13,7 +13,7 @@ public interface CardService {
 
     Card save(Card card);
 
-    Card updata(Integer id ,String select, Integer status);
+    Card updata(Integer id ,String window, Integer status);
 
     Card findCardById(Integer id);
 

@@ -17,7 +17,7 @@ public class SoundSpeakerUtil {
             // 获取执行对象
             Dispatch sapo = sap.getObject();
             // 执行朗读
-            Dispatch.call(sapo, "Speak", new Variant("请" + card.getNumber() + "车主到"+ card.getSelect()+ "窗口" + "办理业务"));
+            Dispatch.call(sapo, "Speak", new Variant("请" + card.getNumber() + "车主到"+ card.getWindow()+ "窗口" + "办理业务"));
             // 关闭执行对象
             sapo.safeRelease();
         } catch (Exception e) {

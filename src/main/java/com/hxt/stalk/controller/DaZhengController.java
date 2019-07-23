@@ -36,7 +36,7 @@ public class DaZhengController {
     @PostMapping("/update")
     public void updateStatus(@RequestParam("id") Integer id){
         Card card = cardService.findCardById(id);
-        card.setSelect("制证打证");
+        card.setWindow("制证打证");
         card.setStatus(2);
         soundSpeakerUtil.getSound(card);
     }

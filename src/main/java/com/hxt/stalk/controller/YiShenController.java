@@ -28,10 +28,10 @@ public class YiShenController {
     public void speakList(@RequestParam("id") Integer id){
         Card card = cardService.findCardById(id);
 
-        if (card.getSelect() == "一审") {
+        if (card.getWindow() == "一审") {
             soundSpeakerUtil.getSound(card);
         }else {
-            card.setSelect("一审");
+            card.setWindow("一审");
             card.setStatus(1);
             cardService.save(card);
             soundSpeakerUtil.getSound(card);
@@ -42,7 +42,7 @@ public class YiShenController {
     public void speaker(@RequestParam("number") String number){
         Card card = new Card();
         card.setNumber(number);
-        card.setSelect("一审");
+        card.setWindow("一审");
         card.setStatus(1);
         if (cardService.findCardByNumber(number) == null) {
             cardService.save(card);
@@ -55,7 +55,7 @@ public class YiShenController {
     @PostMapping("/hege")
     public void updateCard(@RequestParam("id") Integer id){
         Card card = cardService.findCardById(id);
-        card.setSelect("一审");
+        card.setWindow("一审");
         card.setStatus(0);
         cardService.save(card);
     }

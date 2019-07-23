@@ -41,12 +41,12 @@
 							<div class="col-sm-4">
 								<div class="card">
 									<div class="card-body">
-										<form >
+										<form>
 											<div>
 												<label>输入车牌号码</label>
-												<input />
+												<input type="text" id="number"/>
 											</div>
-											<a type="button" class="btn btn-primary btn-lg btn-block">呼叫</a>
+											<botton type="submit" class="btn btn-primary btn-lg btn-block" onclick="speak()">呼叫</botton>
 										</form>
 									</div>
 								</div>
@@ -73,6 +73,22 @@
 					error: function() {
 					}
 			});
+			}
+
+			function speak(){
+				var data = {
+					"number": $("#number").val(),
+				};
+				$.ajax({
+					type: "post",
+					url: "/stalk/ziliao/speak",
+					data: data,
+					dataType: "json",
+					success: function(data) {
+					},
+					error: function() {
+					}
+				});
 			}
 		</script>
 	</body>

@@ -32,10 +32,10 @@ public class CardServiceImpl implements CardService {
     }
 
     @Override
-    public Card updata(Integer id, String select, Integer status) {
+    public Card updata(Integer id, String window, Integer status) {
 
         Card card = cardRepsitory.findCardById(id);
-        card.setSelect(select);
+        card.setWindow(window);
         card.setStatus(status);
         return cardRepsitory.save(card);
     }
@@ -54,6 +54,7 @@ public class CardServiceImpl implements CardService {
     public List<Card> findCardsByStatus(Integer status) {
         return cardRepsitory.findCardsByStatus(status);
     }
+
 
 
 }

@@ -3,6 +3,7 @@ package com.hxt.stalk.controller;
 import com.hxt.stalk.dataobject.Card;
 import com.hxt.stalk.service.CardService;
 import com.hxt.stalk.util.SoundSpeakerUtil;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,31 +31,28 @@ public class ZiLiaoController {
     @GetMapping("/ziliaohujiao")
     @ResponseBody
     public void speakList(Integer id){
-
-        Integer id1 = (Integer) id;
         Integer status = new Integer(4);
-        Card card = cardService.findCardById(id1);
+        Card card = cardService.findCardById(id);
+        card.setWindow("资料录入");
         System.out.println(card);
-        String string = "资料录入";
-            /*card.setSelect(string);
-            cardService.save(card);*/
-            soundSpeakerUtil.getSound(card);
+        soundSpeakerUtil.getSound(card);
+        cardService.save(card);
 
     }
 
-    @GetMapping("/speak/{number}")
-    public String  speaker(String number){
+    @RequestMapping(value = "/speak",method = RequestMethod.POST)
+    @ResponseBody
+    public void speaker(String number){
         Card card = new Card();
         card.setNumber(number);
-        card.setSelect("资料录入");
+        card.setWindow("资料录入");
         card.setStatus(4);
-        if (cardService.findCardByNumber(number) == null) {
-            cardService.save(card);
+        if (cardService.findCardByNumber(card.getNumber()) == null) {
+
             soundSpeakerUtil.getSound(card);
-            return "ziliao";
+            cardService.save(card);
         }else {
             soundSpeakerUtil.getSound(card);
-            return "ziliao";
         }
     }
 
