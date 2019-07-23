@@ -49,7 +49,7 @@ public class Card {
      * status = 1 不合格
      * status = 2 等待领取合格证
      * status = 3 办理完结
-     * status = 4 资料录入
+     * status = 4 资料录入和一审
      */
     private Integer status;
 

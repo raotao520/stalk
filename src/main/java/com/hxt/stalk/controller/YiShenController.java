@@ -4,12 +4,14 @@ import com.hxt.stalk.dataobject.Card;
 import com.hxt.stalk.service.CardService;
 import com.hxt.stalk.util.SoundSpeakerUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/yishen")
 public class YiShenController {
 
@@ -18,14 +20,22 @@ public class YiShenController {
     SoundSpeakerUtil soundSpeakerUtil = new SoundSpeakerUtil();
 
     @GetMapping("/list")
-    public List<Card> findStatusList(){
+    public String findStatusList(Model model){
 
-        List<Integer> list = Arrays.asList(0,1);
+        List<Integer> list = Arrays.asList(1,4,0);
 
-        return cardService.findByStatusIn(list);
+        List cards = cardService.findByStatusIn(list);
+        model.addAttribute("cards",cards);
+        return "yishen";
     }
-    @PostMapping("/yishenhujiao")
-    public void speakList(@RequestParam("id") Integer id){
+
+    /**
+     * 不合格按钮
+     * @param id
+     */
+    @PostMapping("/lose")
+    @ResponseBody
+    public void successList(Integer id){
         Card card = cardService.findCardById(id);
 
         if (card.getWindow() == "一审") {
@@ -33,13 +43,23 @@ public class YiShenController {
         }else {
             card.setWindow("一审");
             card.setStatus(1);
-            cardService.save(card);
             soundSpeakerUtil.getSound(card);
+            cardService.save(card);
         }
     }
 
-    @PostMapping("/yishenspeak")
-    public void speaker(@RequestParam("number") String number){
+    @PostMapping("/success")
+    @ResponseBody
+    public void loseList(Integer id){
+        Card card = cardService.findCardById(id);
+        card.setWindow("一审");
+        card.setStatus(0);
+        cardService.save(card);
+    }
+
+    @RequestMapping(value = "/speak",method = RequestMethod.POST)
+    @ResponseBody
+    public void speaker(String number){
         Card card = new Card();
         card.setNumber(number);
         card.setWindow("一审");
@@ -50,13 +70,5 @@ public class YiShenController {
         }else {
             soundSpeakerUtil.getSound(card);
         }
-    }
-
-    @PostMapping("/hege")
-    public void updateCard(@RequestParam("id") Integer id){
-        Card card = cardService.findCardById(id);
-        card.setWindow("一审");
-        card.setStatus(0);
-        cardService.save(card);
     }
 }

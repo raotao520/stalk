@@ -4,6 +4,8 @@ import com.hxt.stalk.dataobject.Card;
 import com.hxt.stalk.service.CardService;
 import com.hxt.stalk.util.SoundSpeakerUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -12,33 +14,28 @@ import java.util.Arrays;
 import java.util.List;
 
 
-@RestController
+@Controller
 @RequestMapping("/speaker")
 public class CardController {
 
     @Autowired
     CardService cardService;
 
-    @GetMapping("/list")
-    public List<Card> list(){
+    @GetMapping("/list1")
+    public String list(Model model){
 
-        List<Card> card =cardService.findAll();
+        List<Card> cards =cardService.findAll();
 
-        return card;
+        model.addAttribute("cards",cards);
+        return "qianduan1";
     }
 
-    /**
-     * 一审窗口列表显示
-     * 传入状态，用于动态显示屏显示
-     * @param
-     * @return
-     */
-    @GetMapping("/yisheng")
-    public List<Card> find1Shen(){
+    @GetMapping("/list2")
+    public String list2list(Model model){
 
-        List<Integer> list = Arrays.asList(1,0);
+        List<Card> cards =cardService.findAll();
 
-        return cardService.findByStatusIn(list);
+        model.addAttribute("cards",cards);
+        return "qianduan2";
     }
-
 }
