@@ -28,6 +28,7 @@ public class ZiLiaoController {
         model.addAttribute("cards",cards);
         return "ziliao";
     }
+
     @GetMapping("/ziliaohujiao")
     @ResponseBody
     public void speakList(Integer id){
@@ -37,7 +38,6 @@ public class ZiLiaoController {
         System.out.println(card);
         soundSpeakerUtil.getSound(card);
         cardService.save(card);
-
     }
 
     @RequestMapping(value = "/speak",method = RequestMethod.POST)
@@ -48,7 +48,6 @@ public class ZiLiaoController {
         card.setWindow("资料录入");
         card.setStatus(4);
         if (cardService.findCardByNumber(card.getNumber()) == null) {
-
             soundSpeakerUtil.getSound(card);
             cardService.save(card);
         }else {
